@@ -1,0 +1,65 @@
+<odoo>
+    <!-- Action rapport -->
+    <record id="action_report_audit_mission" model="ir.actions.report">
+        <field name="name">Rapport d'audit</field>
+        <field name="model">audit.mission</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">audit_bancaire.report_audit_mission_document</field>
+        <field name="report_file">audit_bancaire.report_audit_mission_document</field>
+        <field name="binding_model_id" ref="model_audit_mission"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Template QWeb -->
+    <template id="report_audit_mission_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Rapport d'Audit Bancaire</h2>
+
+                        <div class="row mt16 mb16">
+                            <div class="col-6">
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <td><strong>Référence Mission</strong></td>
+                                        <td><t t-esc="doc.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Entité auditée</strong></td>
+                                        <td><t t-esc="doc.entite_audit or 'N/A'"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Auditeur</strong></td>
+                                        <td><t t-esc="doc.auditeur_id.name"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <td><strong>Date d'audit</strong></td>
+                                        <td><t t-esc="doc.date_audit"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Date de fin</strong></td>
+                                        <td><t t-esc="doc.date_fin or 'En cours'"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Statut</strong></td>
+                                        <td><t t-esc="dict(doc.fields_get(['statut'])['statut']['selection'])[doc.statut]"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div t-if="doc.observations" class="mt16">
+                            <h4>Observations / Conclusion</h4>
+                            <p><t t-esc="doc.observations"/></p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

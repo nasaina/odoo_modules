@@ -5,7 +5,8 @@ class AuditMission(models.Model):
 	_description = 'Mission d\'audit bancaire'
 
 	name = fields.Char(string='Reference Mission', required=True)
-	date_audit = fields.Date(string='Date Audit', required=True)
+	date_audit = fields.Date(string='Date Audit', required=True, default=fields.Date.today)
+	date_fin = fields.Date(string='Date fin')
 	entite_audit = fields.Char(string='Agence ou departement')
 	auditeur_id = fields.Many2one('res.users', string='Auditeur', default=lambda self: self.env.user)
 	statut = fields.Selection([
@@ -20,3 +21,10 @@ class AuditMission(models.Model):
 
 	def action_termine(self):
 		self.statut = 'termine'
+		self.date_fin = fields.Date.today()
+
+	def action_brouillon(self):
+		self.statut = 'brouillon'
+
+	def pdf_generate(self):
+		return self.env.ref('audit_bancaire.action_report_audit_mission').report_action(self)
