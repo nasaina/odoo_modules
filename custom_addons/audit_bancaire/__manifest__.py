@@ -1,17 +1,22 @@
 {
-    'name': "audit_bancaire",
+    'name': "Bank Audit",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "Manage bank audit missions with status workflow and PDF report generation.",
 
     'description': """
-Long description of module's purpose
+        Custom module for managing bank audit missions.
+        Features:
+        - Track audit missions (draft → in progress → done)
+        - Assign auditors and audited entities
+        - Automatically record the end date on completion
+        - Generate a PDF audit report
     """,
 
     'author': "Nasainarivelo Andrianarijaona",
     'website': "https://www.linkedin.com/in/nasainarivelo-andrianarijaona",
 
-    'category': 'Uncategorized',
-    'version': '0.1',
+    'category': 'Accounting',
+    'version': '19.0.0.1',
 
     'depends': ['base'],
 
