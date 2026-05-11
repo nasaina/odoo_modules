@@ -5,10 +5,10 @@
 		<field name="arch" type="xml">
 			<form>
 				<header>
-					<button name="action_en_cours" string="Débuter l'audit" type="object" class="oe_highlight" invisible="statut != 'brouillon'"/>
+					<button name="action_en_cours" string="Débuter l'audit" type="object" class="btn-primary" invisible="statut != 'brouillon'"/>
 					<button name="action_termine" string="Finaliser l'audit" type="object" invisible="statut != 'en_cours'"/>
 					<button name="action_brouillon" string="Remettre en brouillon" type="object" class="btn-danger" invisible="statut != 'termine'"/>
-					<button name="pdf_generate" string="Générer le PDF" type="object" class="btn-primary"/>
+					<button name="pdf_generate" string="Générer le PDF" type="object" class="btn-success" invisible="statut != 'termine'"/>
 					<field name="statut" widget="statusbar" statusbar_visible="brouillon,en_cours,termine"/>
 				</header>
 				<sheet>
