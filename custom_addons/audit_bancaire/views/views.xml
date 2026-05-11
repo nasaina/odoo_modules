@@ -4,6 +4,11 @@
 		<field name="model">audit.mission</field>
 		<field name="arch" type="xml">
 			<form>
+				<header>
+					<button name="action_en_cours" string="Débuter l'audit" type="object" class="oe_highlight" invisible="statut != 'brouillon'"/>
+					<button name="action_termine" string="Finaliser l'audit" type="object" invisible="statut != 'en_cours'"/>
+					<field name="statut" widget="statusbar" statusbar_visible="brouillon,en_cours,termine"/>
+				</header>
 				<sheet>
 					<group>
 						<field name="name"/>

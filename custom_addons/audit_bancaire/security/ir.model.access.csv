@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_audit_bancaire_audit_bancaire,audit_bancaire.audit_bancaire,model_audit_bancaire_audit_bancaire,base.group_user,1,1,1,1
+access_audit_mission,audit.mission,model_audit_mission,base.group_user,1,1,1,1

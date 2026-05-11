@@ -14,3 +14,9 @@ class AuditMission(models.Model):
 		('termine', 'Termine'),
 	], string='Statut', default='brouillon')
 	observations = fields.Text(string='Conclusion de l\'audit')
+
+	def action_en_cours(self):
+		self.statut = 'en_cours'
+
+	def action_termine(self):
+		self.statut = 'termine'
